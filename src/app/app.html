@@ -21,4 +21,10 @@
 
   </div>
 
+  <ul>
+  @for (item of items$ | async; track item) {
+    <li>{{ item.name }}</li>
+  }
+</ul>
+
 </mat-drawer-container>

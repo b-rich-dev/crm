@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { User } from '../../models/user.class';
+import { AsyncPipe } from '@angular/common';
+import { Firestore, collection, collectionData, addDoc } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -16,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     FormsModule,
     MatDatepickerModule,
+    AsyncPipe,
+    MatProgressBarModule
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './dialog-add-user.html',
@@ -23,11 +30,29 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class DialogAddUser {
 
-  onNoClick(): void {
+  user = new User();
+  firestore: Firestore = inject(Firestore);
+  dialogRef = inject(MatDialogRef<DialogAddUser>);
+  items$: Observable<any[]>;
+  loading = false;
 
+  constructor() {
+    const aCollection = collection(this.firestore, 'items')
+    this.items$ = collectionData(aCollection);
   }
 
-  animal(): void {
+  saveUser(): void {
+    this.loading = true;
 
+    const usersCollection = collection(this.firestore, 'users');
+    addDoc(usersCollection, this.user.toJSON()).then(() => {
+      console.log('User added successfully');
+      this.loading = false;
+      this.dialogRef.close();
+    });
+  }
+
+  cancel(): void {
+    this.dialogRef.close();
   }
 }

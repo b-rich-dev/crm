@@ -1,4 +1,19 @@
-<p>user works!</p>
-<button (click)="openDialog()" matFab matTooltip="Add User" [matTooltipPosition]="'above'" aria-label="Example icon button with a delete icon">
-        <mat-icon>add</mat-icon>
-      </button>
+<mat-card appearance="outlined">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>City</th>
+    </tr>
+    <tr>
+      <td>ddfdf</td>
+      <td>example@example.com</td>
+      <td>Sample City</td>
+    </tr>
+  </table>
+</mat-card>
+
+<button (click)="openDialog()" matFab matTooltip="Add User" [matTooltipPosition]="'above'"
+  aria-label="Example icon button with a delete icon">
+  <mat-icon>add</mat-icon>
+</button>
