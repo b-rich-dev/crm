@@ -18,6 +18,13 @@
         </div>
         <div class="input-container">
             <mat-form-field appearance="outline" class="width-100">
+                <mat-label>Email</mat-label>
+                <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="Email">
+                <mat-hint>Please enter an Email</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="input-container">
+            <mat-form-field appearance="outline" class="width-100">
                 <mat-label>Birth date</mat-label>
                 <input [disabled]="loading" [(ngModel)]="user.birthDate" matInput [matDatepicker]="picker" matInput placeholder="Birth date">
                 <mat-hint>Please enter MM/DD/YYYY</mat-hint>

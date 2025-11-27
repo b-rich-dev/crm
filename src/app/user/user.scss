@@ -17,13 +17,40 @@ table {
     th {
         background-color: #f2f2f2;
         border-bottom: 1px solid #ddd;
+
+        &:first-child {
+            border-radius: 12px 0 0 0;
+        }
+
+        &:last-child {
+            border-radius: 0 12px 0 0;
+        }
     }
 
-    th:first-child {
-        border-radius: 12px 0 0 0;
-    }
+    tr {
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
 
-    th:last-child {
-        border-radius: 0 12px 0 0;
+        &:first-child {
+            cursor: default;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover {
+            background-color: #e0e0e0;
+        }
+
+        &:last-child:hover {
+            td:first-child {
+                border-radius: 0 0 0 12px;
+            }
+
+            td:last-child {
+                border-radius: 0 0 12px 0;
+            }
+        }
     }
 }

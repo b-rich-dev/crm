@@ -5,11 +5,13 @@
       <th>Email</th>
       <th>City</th>
     </tr>
-    <tr>
-      <td>ddfdf</td>
-      <td>example@example.com</td>
-      <td>Sample City</td>
+    @for (user of allUsers; track user) {
+    <tr [routerLink]="['/user', user.id]" style="cursor: pointer;">
+      <td>{{user.firstName}} {{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.city}}</td>
     </tr>
+    }
   </table>
 </mat-card>
 

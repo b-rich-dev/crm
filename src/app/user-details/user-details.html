@@ -1,0 +1,44 @@
+<mat-card appearance="outlined" class="user-details-header">
+    <button [matMenuTriggerFor]="menuName" class="menu-icon" matIconButton
+        aria-label="Icon button with a vertical three dot icon">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menuName="matMenu" xPosition="before">
+        <button mat-menu-item (click)="editUser()">Edit</button>
+        <!-- <button mat-menu-item  (click)="deleteUserName()">Delete</button> -->
+    </mat-menu>
+    @if (user) {
+    <img src="assets/img/profile.png" alt="Profile Picture" />
+    <div class="name">
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <p>{{ user.email }}</p>
+    </div>
+    } @else {
+    <div>
+        <p>User not found.</p>
+    </div>
+    }
+</mat-card>
+
+<mat-card appearance="outlined" class="user-details-address mt-32">
+    <button [matMenuTriggerFor]="menuAddress" class="menu-icon" matIconButton
+        aria-label="Icon button with a vertical three dot icon">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menuAddress="matMenu" xPosition="before">
+        <button mat-menu-item (click)="editAddress()">Edit</button>
+        <!-- <button mat-menu-item (click)="deleteAddress()">Delete</button> -->
+    </mat-menu>
+    @if (user) {
+    <h2>Address</h2>
+    <div>
+        <p>{{ user.street }}</p>
+        <p>{{ user.zipCode }} {{ user.city }}</p>
+        <!-- <p><strong>Birth Date:</strong> {{ user.birthDate | date }}</p> -->
+    </div>
+    } @else {
+    <div>
+        <p>Address not found.</p>
+    </div>
+    }
+</mat-card>

@@ -7,7 +7,6 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { User } from '../../models/user.class';
-import { AsyncPipe } from '@angular/common';
 import { Firestore, collection, collectionData, addDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -21,7 +20,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatButtonModule,
     FormsModule,
     MatDatepickerModule,
-    AsyncPipe,
     MatProgressBarModule
   ],
   providers: [provideNativeDateAdapter()],
@@ -46,7 +44,6 @@ export class DialogAddUser {
 
     const usersCollection = collection(this.firestore, 'users');
     addDoc(usersCollection, this.user.toJSON()).then(() => {
-      console.log('User added successfully');
       this.loading = false;
       this.dialogRef.close();
     });
